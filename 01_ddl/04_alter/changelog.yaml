@@ -159,3 +159,61 @@ databaseChangeLog:
             splitStatements: true
             endDelimiter: ;
             stripComments: false
+
+  - changeSet:
+      id: 004i-ddl-add-safe-zone-address
+      author: gps-guardian-escolar
+      logicalFilePath: 01_ddl/04_alter/009_safe_zones_address.sql
+      labels: ddl,alter,safe-zones
+      changes:
+        - sqlFile:
+            path: 009_safe_zones_address.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
+  - changeSet:
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/04_alter/009_safe_zones_address.rollback.sql
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
+      id: 004j-ddl-add-safe-zone-type
+      author: gps-guardian-escolar
+      logicalFilePath: 01_ddl/04_alter/010_safe_zones_type.sql
+      labels: ddl,alter,safe-zones
+      comment: Stores whether a safe zone is a house, school, or custom location.
+      changes:
+        - sqlFile:
+            path: 010_safe_zones_type.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/04_alter/010_safe_zones_type.rollback.sql
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
+
+  - changeSet:
+      id: 004k-ddl-add-safe-zone-color
+      author: gps-guardian-escolar
+      logicalFilePath: 01_ddl/04_alter/011_safe_zones_color.sql
+      labels: ddl,alter,safe-zones
+      comment: Persists the display color selected for each safe zone.
+      changes:
+        - sqlFile:
+            path: 011_safe_zones_color.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/04_alter/011_safe_zones_color.rollback.sql
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
