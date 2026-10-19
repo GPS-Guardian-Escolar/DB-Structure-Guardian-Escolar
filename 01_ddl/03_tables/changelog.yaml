@@ -159,3 +159,23 @@ databaseChangeLog:
             splitStatements: true
             endDelimiter: ;
             stripComments: false
+  - changeSet:
+      id: 003i-ddl-add-student-photo
+      author: gps-guardian-escolar
+      logicalFilePath: 01_ddl/03_tables/009_student_photo.sql
+      labels: "ddl,tables,students,photo"
+      comment: Stores an optional student photo as a data URL.
+      changes:
+        - sqlFile:
+            path: 009_student_photo.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/009_student_photo.rollback.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
