@@ -1,0 +1,19 @@
+name: Database quality
+
+on:
+  pull_request:
+  push:
+    branches: [dev, qa, main]
+
+jobs:
+  liquibase:
+    runs-on: ubuntu-latest
+    env:
+      POSTGRES_PASSWORD: ci-password
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker compose config --quiet
+      - run: docker compose up -d postgres
+      - run: docker compose run --rm liquibase validate
+      - if: always()
+        run: docker compose down -v
