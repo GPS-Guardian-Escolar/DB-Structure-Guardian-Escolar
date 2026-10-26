@@ -2,13 +2,13 @@
 
 Estructura SQL independiente del backend para PostgreSQL.
 
-La documentacion completa de base de datos esta centralizada en:
+La documentacion versionada de base de datos esta en `docs/database/`:
 
-- `../docs/database/README.md`
-- `../docs/database/estructura-bd.md`
-- `../docs/database/data-model.md`
-- `../docs/database/change-management.md`
-- `../docs/database/sql-inventory.md`
+- [`docs/database/README.md`](docs/database/README.md)
+- [`docs/database/estructura-bd.md`](docs/database/estructura-bd.md)
+- [`docs/database/data-model.md`](docs/database/data-model.md)
+- [`docs/database/change-management.md`](docs/database/change-management.md)
+- [`docs/database/sql-inventory.md`](docs/database/sql-inventory.md)
 
 ## Ejecucion rapida
 
@@ -25,7 +25,7 @@ actualiza solo el secreto del ambiente y ejecuta Liquibase con `LIQUIBASE_CONTEX
 Levantar solo PostgreSQL:
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 La base queda publicada en:
@@ -34,4 +34,4 @@ La base queda publicada en:
 localhost:5432
 ```
 
-Para levantar backend y base de datos juntos, usar el `docker-compose.yaml` de la raiz del proyecto.
+Para levantar backend y base de datos juntos, usar [`../Docker-Infra-Guardian-Escolar/docker-compose.yaml`](../Docker-Infra-Guardian-Escolar/docker-compose.yaml).
