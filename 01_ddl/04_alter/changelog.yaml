@@ -217,3 +217,23 @@ databaseChangeLog:
             splitStatements: true
             endDelimiter: ;
             stripComments: false
+  - changeSet:
+      id: 004l-security-student-link-code
+      author: gps-guardian-escolar
+      logicalFilePath: 01_ddl/04_alter/012_student_link_codes.sql
+      labels: "ddl,alter,security,student-link"
+      comment: Stores only a hashed, expiring, single-use student device link code and failed-attempt counter.
+      changes:
+        - sqlFile:
+            path: 012_student_link_codes.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/04_alter/012_student_link_codes.rollback.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
