@@ -18,6 +18,10 @@ Crear el archivo local de variables de entorno y completar `POSTGRES_PASSWORD`:
 cp .env.example .env
 ```
 
+El changeset del administrador usa el contexto `local` y no se ejecuta en QA/produccion.
+Completa `ADMIN_PASSWORD_HASH` con un hash BCrypt generado fuera del repositorio; para rotarlo,
+actualiza solo el secreto del ambiente y ejecuta Liquibase con `LIQUIBASE_CONTEXTS=local`.
+
 Levantar solo PostgreSQL:
 
 ```bash

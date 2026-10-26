@@ -24,6 +24,7 @@ databaseChangeLog:
       author: gps-guardian-escolar
       logicalFilePath: 02_dml/00_inserts/002_admin_user.sql
       labels: "dml,system,inserts,admin"
+      context: local
       comment: Loads the required administrator account.
       changes:
         - sqlFile:
