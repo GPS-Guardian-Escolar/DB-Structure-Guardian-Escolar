@@ -1,0 +1,1 @@
+ALTER ROLE gps_guardian_app LOGIN PASSWORD '${APP_DB_PASSWORD}';
