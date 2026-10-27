@@ -28,7 +28,7 @@ databaseChangeLog:
         - onFail: HALT
         - sqlCheck:
             expectedResult: "1"
-            sql: "SELECT CASE WHEN '${APP_DB_PASSWORD}' <> '' THEN 1 ELSE 0 END"
+            sql: "SELECT CASE WHEN '${APP_DB_PASSWORD}' ~ '^[A-Za-z0-9_-]{32,}$' THEN 1 ELSE 0 END"
       changes:
         - sqlFile:
             path: 002_enable_application_role_login.sql
