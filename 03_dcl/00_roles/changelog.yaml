@@ -18,3 +18,28 @@ databaseChangeLog:
             splitStatements: true
             endDelimiter: ;
             stripComments: false
+  - changeSet:
+      id: 006b-dcl-enable-application-role-login
+      author: gps-guardian-escolar
+      logicalFilePath: 03_dcl/00_roles/002_enable_application_role_login.sql
+      labels: "dcl,roles,application,credentials"
+      comment: Enables login for the least-privilege application role using an externally supplied password.
+      preConditions:
+        - onFail: HALT
+        - sqlCheck:
+            expectedResult: "1"
+            sql: "SELECT CASE WHEN '${APP_DB_PASSWORD}' ~ '^[A-Za-z0-9_-]{32,}$' THEN 1 ELSE 0 END"
+      changes:
+        - sqlFile:
+            path: 002_enable_application_role_login.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/03_dcl/00_roles/002_enable_application_role_login.rollback.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
