@@ -2,13 +2,6 @@
 
 Estructura SQL independiente del backend para PostgreSQL.
 
-## Migraciones
-
-Las migraciones aplicadas son forward-only: no se editan ni se eliminan changesets que ya
-puedan existir en `DATABASECHANGELOG`. Los ajustes posteriores deben agregarse como un
-changeset nuevo con rollback revisado. Consulta [`docs/MIGRATION_GUIDE.md`](docs/MIGRATION_GUIDE.md)
-antes de promover cambios entre entornos.
-
 La documentacion completa de base de datos esta centralizada en:
 
 - [`docs/database/README.md`](docs/database/README.md)
