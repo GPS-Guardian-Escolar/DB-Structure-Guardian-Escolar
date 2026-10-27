@@ -237,3 +237,23 @@ databaseChangeLog:
             splitStatements: true
             endDelimiter: ;
             stripComments: false
+  - changeSet:
+      id: 004m-security-hash-existing-session-tokens
+      author: gps-guardian-escolar
+      logicalFilePath: 01_ddl/04_alter/013_hash_session_tokens.sql
+      labels: "ddl,alter,security,sessions"
+      comment: Hashes existing JWTs in user_sessions to match the backend's SHA-256 session lookup.
+      changes:
+        - sqlFile:
+            path: 013_hash_session_tokens.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/04_alter/013_hash_session_tokens.rollback.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false

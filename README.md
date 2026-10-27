@@ -18,9 +18,10 @@ Crear el archivo local de variables de entorno y completar `POSTGRES_PASSWORD`:
 cp .env.example .env
 ```
 
-El changeset del administrador usa el contexto `local` y no se ejecuta en QA/produccion.
-Completa `ADMIN_PASSWORD_HASH` con un hash BCrypt generado fuera del repositorio; para rotarlo,
-actualiza solo el secreto del ambiente y ejecuta Liquibase con `LIQUIBASE_CONTEXTS=local`.
+El administrador solo se carga con el contexto `local`; Compose usa `prod` como valor seguro
+cuando no se configura un contexto. Completa `ADMIN_EMAIL`, `ADMIN_PHONE` y `ADMIN_PASSWORD_HASH`
+con valores locales y un hash BCrypt generado fuera del repositorio. Para rotar esos valores,
+actualiza los secretos y vuelve a ejecutar Liquibase con `LIQUIBASE_CONTEXTS=local`.
 
 Levantar solo PostgreSQL:
 

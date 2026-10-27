@@ -1,7 +1,7 @@
 -- =============================================
 -- DML - SYSTEM ADMIN USER
--- Required administrator account for local/demo deployments only.
--- Values must be supplied by Liquibase variables, never committed to Git.
+-- Required administrator account for local/demo deployments.
+-- Password hash generated with Spring Security BCryptPasswordEncoder.
 -- =============================================
 
 INSERT INTO users (
@@ -15,11 +15,11 @@ INSERT INTO users (
     created_at
 )
 VALUES (
-    '${ADMIN_USER_ID}',
+    '33333333-3333-3333-3333-333333333333',
     'Administrador GPS Guardian Escolar',
-    '${ADMIN_EMAIL}',
-    '${ADMIN_PHONE}',
-    '${ADMIN_PASSWORD_HASH}',
+    'gpsguardianescolar@gmail.com',
+    '+570000000000',
+    '$2a$10$ySsK3eqrv9MT8KBhAmNKDe87vLMBPfwo/8axCTZ5J1PbTjHyQCSR.',
     true,
     true,
     NOW()
@@ -37,7 +37,7 @@ INSERT INTO user_roles (user_id, role_id)
 SELECT u.id, r.id
 FROM users u
 CROSS JOIN roles r
-WHERE u.email = '${ADMIN_EMAIL}'
+WHERE u.email = 'gpsguardianescolar@gmail.com'
   AND r.role_name = 'ADMIN'
 ON CONFLICT DO NOTHING;
 
@@ -50,7 +50,7 @@ SET delay_alert = true,
     updated_at = NOW()
 FROM users u
 WHERE cn.user_id = u.id
-  AND u.email = '${ADMIN_EMAIL}';
+  AND u.email = 'gpsguardianescolar@gmail.com';
 
 INSERT INTO notification_settings (
     user_id,
@@ -62,7 +62,7 @@ INSERT INTO notification_settings (
 )
 SELECT u.id, true, true, true, true, true
 FROM users u
-WHERE u.email = '${ADMIN_EMAIL}'
+WHERE u.email = 'gpsguardianescolar@gmail.com'
   AND NOT EXISTS (
       SELECT 1 FROM notification_settings cn WHERE cn.user_id = u.id
   );

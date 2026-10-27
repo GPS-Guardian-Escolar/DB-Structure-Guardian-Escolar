@@ -40,3 +40,29 @@ databaseChangeLog:
             splitStatements: true
             endDelimiter: ;
             stripComments: false
+  - changeSet:
+      id: 005c-dml-rotate-local-admin-credentials
+      author: gps-guardian-escolar
+      logicalFilePath: 02_dml/00_inserts/003_rotate_local_admin_credentials.sql
+      labels: "dml,system,admin,credentials"
+      context: local
+      comment: Replaces the legacy local administrator password and contact details with supplied values.
+      preConditions:
+        - onFail: HALT
+        - sqlCheck:
+            expectedResult: "1"
+            sql: "SELECT CASE WHEN '${ADMIN_EMAIL}' <> '' AND '${ADMIN_PHONE}' <> '' AND '${ADMIN_PASSWORD_HASH}' <> '' THEN 1 ELSE 0 END"
+      changes:
+        - sqlFile:
+            path: 003_rotate_local_admin_credentials.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/02_dml/00_inserts/003_rotate_local_admin_credentials.rollback.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
