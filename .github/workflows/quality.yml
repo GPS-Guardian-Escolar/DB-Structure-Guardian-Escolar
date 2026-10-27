@@ -15,5 +15,7 @@ jobs:
       - run: docker compose config --quiet
       - run: docker compose up -d postgres
       - run: docker compose run --rm liquibase validate
+      - run: docker compose run --rm liquibase update
+      - run: docker compose run --rm liquibase rollback-count --count=200
       - if: always()
         run: docker compose down -v
