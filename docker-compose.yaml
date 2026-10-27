@@ -57,6 +57,7 @@ services:
 
     command:
       - --defaultsFile=/liquibase/liquibase.properties
+      - --changelog-parameter.APP_DB_PASSWORD=${APP_DB_PASSWORD:?Set APP_DB_PASSWORD for gps_guardian_app}
       - update
 
 
