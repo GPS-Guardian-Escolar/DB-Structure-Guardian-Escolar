@@ -58,6 +58,7 @@ services:
 
     command:
       - --defaultsFile=/liquibase/liquibase.properties
+      - --changelog-parameter.APP_DB_PASSWORD=${APP_DB_PASSWORD:?Set APP_DB_PASSWORD for gps_guardian_app}
       - --changelog-parameter.ADMIN_EMAIL=${ADMIN_EMAIL:-}
       - --changelog-parameter.ADMIN_PHONE=${ADMIN_PHONE:-}
       - --changelog-parameter.ADMIN_PASSWORD_HASH=${ADMIN_PASSWORD_HASH:-}

@@ -25,6 +25,10 @@ Crear el archivo local de variables de entorno y completar `POSTGRES_PASSWORD`:
 cp .env.example .env
 ```
 
+Define `APP_DB_PASSWORD` con al menos 32 caracteres alfanuméricos, guion o guion bajo para
+`gps_guardian_app`; Liquibase valida ese formato antes de habilitar el login de la aplicación.
+No reutilices la contraseña del usuario administrador de PostgreSQL.
+
 El administrador solo se carga con el contexto `local`; Compose usa `prod` como valor seguro
 cuando no se configura un contexto. Completa `ADMIN_EMAIL`, `ADMIN_PHONE` y `ADMIN_PASSWORD_HASH`
 con valores locales y un hash BCrypt generado fuera del repositorio. Para rotar esos valores,
