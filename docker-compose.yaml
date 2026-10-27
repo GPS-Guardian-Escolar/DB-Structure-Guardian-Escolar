@@ -45,6 +45,7 @@ services:
     environment:
       LIQUIBASE_COMMAND_USERNAME: ${POSTGRES_USER:-postgres}
       LIQUIBASE_COMMAND_PASSWORD: ${POSTGRES_PASSWORD}
+      LIQUIBASE_COMMAND_CONTEXTS: ${LIQUIBASE_CONTEXTS:-prod}
 
     volumes:
       - ./changelog:/liquibase/changelog
@@ -57,6 +58,9 @@ services:
 
     command:
       - --defaultsFile=/liquibase/liquibase.properties
+      - --changelog-parameter.ADMIN_EMAIL=${ADMIN_EMAIL:-}
+      - --changelog-parameter.ADMIN_PHONE=${ADMIN_PHONE:-}
+      - --changelog-parameter.ADMIN_PASSWORD_HASH=${ADMIN_PASSWORD_HASH:-}
       - update
 
 
