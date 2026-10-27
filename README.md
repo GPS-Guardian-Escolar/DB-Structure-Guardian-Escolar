@@ -31,3 +31,17 @@ localhost:5432
 ```
 
 Para levantar backend y base de datos juntos, usar el `docker-compose.yaml` de la raiz del proyecto.
+
+## Retencion de coordenadas
+
+La base incluye `fn_purge_completed_trip_coordinates(p_before)`, que elimina coordenadas
+solo de trayectos completados o cancelados cuya fecha de cierre sea anterior al corte indicado.
+Los trayectos pendientes o activos se conservan. El proceso no se ejecuta automáticamente;
+un operador de base de datos puede programarlo después de definir la política de retención:
+
+```sql
+SELECT fn_purge_completed_trip_coordinates(NOW() - INTERVAL '365 days');
+```
+
+El resultado indica cuántas coordenadas se eliminaron. La función está restringida al
+administrador de la base de datos y no se expone al usuario de aplicación.
