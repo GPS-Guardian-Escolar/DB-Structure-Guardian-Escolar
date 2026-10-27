@@ -234,6 +234,7 @@ databaseChangeLog:
       rollback:
         - sqlFile:
             path: ../../05_rollbacks/01_ddl/04_alter/012_routes_addresses.rollback.sql
+            relativeToChangelogFile: true
             splitStatements: true
             endDelimiter: ;
             stripComments: false
