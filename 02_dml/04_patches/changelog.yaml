@@ -59,3 +59,23 @@ databaseChangeLog:
             splitStatements: true
             endDelimiter: ;
             stripComments: false
+  - changeSet:
+      id: 012a-dml-align-password-minimum
+      author: gps-guardian-escolar
+      logicalFilePath: 02_dml/04_patches/004_align_password_minimum.sql
+      labels: "dml,patch,security,password-policy"
+      comment: Aligns the persisted password minimum with the backend policy of eight characters.
+      changes:
+        - sqlFile:
+            path: 004_align_password_minimum.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/02_dml/04_patches/004_align_password_minimum.rollback.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
