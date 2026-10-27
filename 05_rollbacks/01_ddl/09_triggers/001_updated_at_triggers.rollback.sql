@@ -1,5 +1,4 @@
 DROP TRIGGER IF EXISTS trg_user_devices_updated_at ON user_devices;
-DROP TRIGGER IF EXISTS trg_student_devices_updated_at ON student_devices;
 DROP TRIGGER IF EXISTS trg_notification_receipts_updated_at ON notification_receipts;
 DROP TRIGGER IF EXISTS trg_notification_settings_updated_at ON notification_settings;
 DROP TRIGGER IF EXISTS trg_coordinates_updated_at ON coordinates;
