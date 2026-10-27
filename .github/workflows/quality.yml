@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       POSTGRES_PASSWORD: ci-password
+      APP_DB_PASSWORD: ci-app-password-0123456789-abcdef
     steps:
       - uses: actions/checkout@v4
       - run: docker compose config --quiet
