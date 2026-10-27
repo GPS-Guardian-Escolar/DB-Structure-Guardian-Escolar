@@ -172,7 +172,6 @@ databaseChangeLog:
             splitStatements: true
             endDelimiter: ;
             stripComments: false
-  - changeSet:
       rollback:
         - sqlFile:
             path: ../../05_rollbacks/01_ddl/04_alter/009_safe_zones_address.rollback.sql
@@ -180,6 +179,7 @@ databaseChangeLog:
             splitStatements: true
             endDelimiter: ;
             stripComments: false
+  - changeSet:
       id: 004j-ddl-add-safe-zone-type
       author: gps-guardian-escolar
       logicalFilePath: 01_ddl/04_alter/010_safe_zones_type.sql
