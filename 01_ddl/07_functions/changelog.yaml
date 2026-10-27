@@ -18,22 +18,3 @@ databaseChangeLog:
             splitStatements: true
             endDelimiter: ;
             stripComments: false
-  - changeSet:
-      id: 004g-ddl-coordinate-retention
-      author: gps-guardian-escolar
-      logicalFilePath: 01_ddl/07_functions/002_coordinate_retention.sql
-      labels: "ddl,functions,retention,tracking"
-      comment: Deletes coordinates for completed or canceled trips before an explicit retention cutoff.
-      changes:
-        - sqlFile:
-            path: 002_coordinate_retention.sql
-            relativeToChangelogFile: true
-            splitStatements: false
-            stripComments: false
-      rollback:
-        - sqlFile:
-            path: ../../05_rollbacks/01_ddl/07_functions/002_coordinate_retention.rollback.sql
-            relativeToChangelogFile: true
-            splitStatements: true
-            endDelimiter: ;
-            stripComments: false
