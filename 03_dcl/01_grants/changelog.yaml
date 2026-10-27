@@ -19,3 +19,23 @@ databaseChangeLog:
             splitStatements: true
             endDelimiter: ;
             stripComments: false
+  - changeSet:
+      id: 007b-dcl-restrict-coordinate-retention
+      author: gps-guardian-escolar
+      logicalFilePath: 03_dcl/01_grants/002_restrict_coordinate_retention.sql
+      labels: "dcl,grants,retention,security"
+      comment: Keeps the coordinate-retention function available to database administrators only.
+      changes:
+        - sqlFile:
+            path: 002_restrict_coordinate_retention.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/03_dcl/01_grants/002_restrict_coordinate_retention.rollback.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
