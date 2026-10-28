@@ -34,6 +34,13 @@ cuando no se configura un contexto. Completa `ADMIN_EMAIL`, `ADMIN_PHONE` y `ADM
 con valores locales y un hash BCrypt generado fuera del repositorio. Para rotar esos valores,
 actualiza los secretos y vuelve a ejecutar Liquibase con `LIQUIBASE_CONTEXTS=local`.
 
+Para un entorno desplegado, no uses la cuenta fija de demostracion. Ejecuta una sola vez
+Liquibase con `LIQUIBASE_CONTEXTS=prod,bootstrap` y proporciona `ADMIN_EMAIL`, `ADMIN_PHONE`
+y `ADMIN_PASSWORD_HASH` mediante el gestor de secretos del entorno. El changeset `005d`
+crea o actualiza esa cuenta y le asigna el rol `ADMIN`. Los despliegues posteriores deben
+usar solamente `LIQUIBASE_CONTEXTS=prod` y no conservar esas variables en el entorno del
+servicio. La contrasena original y el hash no deben entrar al repositorio.
+
 Levantar solo PostgreSQL:
 
 ```bash
