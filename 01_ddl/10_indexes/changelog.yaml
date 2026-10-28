@@ -39,3 +39,23 @@ databaseChangeLog:
             splitStatements: true
             endDelimiter: ;
             stripComments: false
+  - changeSet:
+      id: 006-ddl-hot-path-indexes
+      author: gps-guardian-escolar
+      logicalFilePath: 01_ddl/10_indexes/003_hot_path_indexes.sql
+      labels: "ddl,indexes,performance"
+      comment: Adds indexes for notification receipts, safe zones and chronological trip coordinates.
+      changes:
+        - sqlFile:
+            path: 003_hot_path_indexes.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/10_indexes/003_hot_path_indexes.rollback.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
