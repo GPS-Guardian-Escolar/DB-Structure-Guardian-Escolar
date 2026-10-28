@@ -66,3 +66,24 @@ databaseChangeLog:
             splitStatements: true
             endDelimiter: ;
             stripComments: false
+  - changeSet:
+      id: 005d-dml-bootstrap-admin-user
+      author: gps-guardian-escolar
+      logicalFilePath: 02_dml/00_inserts/004_bootstrap_admin_user.sql
+      labels: "dml,system,admin,bootstrap"
+      context: bootstrap
+      comment: Creates or rotates the first administrator only during an explicit deployment bootstrap.
+      preConditions:
+        - onFail: HALT
+        - sqlCheck:
+            expectedResult: "1"
+            sql: "SELECT CASE WHEN '${ADMIN_EMAIL}' <> '' AND '${ADMIN_PHONE}' <> '' AND '${ADMIN_PASSWORD_HASH}' <> '' THEN 1 ELSE 0 END"
+      changes:
+        - sqlFile:
+            path: 004_bootstrap_admin_user.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
+      rollback:
+        - sql: "DELETE FROM user_roles WHERE user_id IN (SELECT id FROM users WHERE lower(email) = lower('${ADMIN_EMAIL}')); DELETE FROM notification_settings WHERE user_id IN (SELECT id FROM users WHERE lower(email) = lower('${ADMIN_EMAIL}')); DELETE FROM users WHERE lower(email) = lower('${ADMIN_EMAIL}');"
