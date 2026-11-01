@@ -6,7 +6,7 @@
 CREATE TABLE users (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     full_name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL CHECK (email ~* '^[a-z0-9](?:[a-z0-9._%+-]{0,62}[a-z0-9])?@(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+(com|co|edu|org|net|gov|mil|info|io|app|dev|es)$'),
+    email VARCHAR(100) UNIQUE NOT NULL CHECK (email ~* '^[a-z0-9](?:[a-z0-9._%+-]{0,62}[a-z0-9])?@(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,24}$'),
     phone VARCHAR(30) CHECK (phone IS NULL OR regexp_replace(phone, '\D', '', 'g') ~ '^[0-9]{10,15}$'),
     password_hash VARCHAR(255) NOT NULL,
     is_active BOOLEAN DEFAULT true,
@@ -16,7 +16,7 @@ CREATE TABLE users (
     password_reset_token VARCHAR(255) UNIQUE,
     password_reset_expires_at TIMESTAMPTZ,
     two_factor_enabled BOOLEAN DEFAULT false,
-    two_factor_method VARCHAR(20) DEFAULT 'EMAIL' CHECK (two_factor_method IN ('EMAIL', 'SMS')),
+    two_factor_method VARCHAR(20) DEFAULT 'EMAIL' CHECK (two_factor_method = 'EMAIL'),
     two_factor_code VARCHAR(10),
     two_factor_token VARCHAR(255) UNIQUE,
     two_factor_expires_at TIMESTAMPTZ,
