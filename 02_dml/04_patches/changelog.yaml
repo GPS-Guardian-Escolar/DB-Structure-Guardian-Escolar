@@ -79,3 +79,23 @@ databaseChangeLog:
             splitStatements: true
             endDelimiter: ;
             stripComments: false
+  - changeSet:
+      id: 013a-dml-align-email-and-two-factor-contract
+      author: gps-guardian-escolar
+      logicalFilePath: 02_dml/04_patches/005_align_email_and_two_factor_contract.sql
+      labels: "dml,patch,users,notifications,security"
+      comment: Removes the rigid email TLD allow-list and retires the unsupported SMS two-factor option.
+      changes:
+        - sqlFile:
+            path: 005_align_email_and_two_factor_contract.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/02_dml/04_patches/005_align_email_and_two_factor_contract.rollback.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false

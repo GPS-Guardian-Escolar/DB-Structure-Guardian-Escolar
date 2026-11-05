@@ -300,3 +300,24 @@ databaseChangeLog:
             splitStatements: true
             endDelimiter: ;
             stripComments: false
+
+  - changeSet:
+      id: 004n-routes-preferred-student-route
+      author: gps-guardian-escolar
+      logicalFilePath: 01_ddl/04_alter/014_preferred_student_route.sql
+      labels: "ddl,alter,routes,tracking"
+      comment: Stores the single route selected by a guardian for the student's next trip.
+      changes:
+        - sqlFile:
+            path: 014_preferred_student_route.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/04_alter/014_preferred_student_route.rollback.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            endDelimiter: ;
+            stripComments: false
